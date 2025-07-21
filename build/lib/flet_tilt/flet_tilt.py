@@ -7,6 +7,7 @@ from flet.core.ref import Ref
 from flet.core.types import OptionalControlEventCallable, Duration, DurationValue
 from flet.core.animation import AnimationCurve
 
+
 class TiltDirection(Enum):
     TOP = "top"
     BOTTOM = "bottom"
@@ -19,6 +20,7 @@ class TiltDirection(Enum):
     CENTER = "center"
     NONE = "none"
 
+
 class GesturesType(Enum):
     NONE = "none"
     TOUCH = "touch"
@@ -26,27 +28,31 @@ class GesturesType(Enum):
     CONTROLLER = "controller"
     SENSORS = "sensors"
 
+
 class LightDirection(Enum):
     AROUND = "around"
     CENTER = "center"
     ALL = "all"
+
 
 class ShadowDirection(Enum):
     AROUND = "around"
     CENTER = "center"
     ALL = "all"
 
+
 class LightShadowMode(Enum):
     PROJECTOR = "projector"
     PERFORMANCE = "performance"
 
+
 class TiltConfig:
     """
     Configuration class for tilt behavior.
-    
+
     Controls how the widget responds to gestures and the intensity of the tilt effect.
     """
-    
+
     def __init__(
         self,
         disable: Optional[bool] = None,
@@ -72,7 +78,7 @@ class TiltConfig:
     ):
         """
         Initialize TiltConfig.
-        
+
         Args:
             disable: Disable tilt effect
             initial: Initial tilt value (float or tuple)
@@ -115,9 +121,10 @@ class TiltConfig:
         self.leave_curve = leave_curve
         self.controller_move_duration = controller_move_duration
         self.controller_leave_duration = controller_leave_duration
-    
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
+
         def duration_to_dict(duration):
             if isinstance(duration, Duration):
                 return {
@@ -129,12 +136,18 @@ class TiltConfig:
                     "microseconds": duration.microseconds,
                 }
             return duration
-        
+
         return {
             "disable": self.disable,
             "initial": self.initial,
             "angle": self.angle,
-            "direction": [d.value if hasattr(d, 'value') else d for d in self.direction] if isinstance(self.direction, list) else (self.direction.value if hasattr(self.direction, 'value') else self.direction),
+            "direction": [d.value if hasattr(d, "value") else d for d in self.direction]
+            if isinstance(self.direction, list)
+            else (
+                self.direction.value
+                if hasattr(self.direction, "value")
+                else self.direction
+            ),
             "enable_revert": self.enable_revert,
             "filter_quality": self.filter_quality,
             "enable_gesture_sensors": self.enable_gesture_sensors,
@@ -147,19 +160,26 @@ class TiltConfig:
             "enable_outside_area_move": self.enable_outside_area_move,
             "move_duration": duration_to_dict(self.move_duration),
             "leave_duration": duration_to_dict(self.leave_duration),
-            "move_curve": self.move_curve.value if hasattr(self.move_curve, 'value') else self.move_curve,
-            "leave_curve": self.leave_curve.value if hasattr(self.leave_curve, 'value') else self.leave_curve,
+            "move_curve": self.move_curve.value
+            if hasattr(self.move_curve, "value")
+            else self.move_curve,
+            "leave_curve": self.leave_curve.value
+            if hasattr(self.leave_curve, "value")
+            else self.leave_curve,
             "controller_move_duration": duration_to_dict(self.controller_move_duration),
-            "controller_leave_duration": duration_to_dict(self.controller_leave_duration),
+            "controller_leave_duration": duration_to_dict(
+                self.controller_leave_duration
+            ),
         }
+
 
 class LightConfig:
     """
     Configuration class for light effects.
-    
+
     Controls the appearance and behavior of light effects during tilt.
     """
-    
+
     def __init__(
         self,
         disable: Optional[bool] = None,
@@ -172,7 +192,7 @@ class LightConfig:
     ):
         """
         Initialize LightConfig.
-        
+
         Args:
             disable: Disable light effect
             color: Light color (hex string)
@@ -189,25 +209,26 @@ class LightConfig:
         self.spread_factor = spread_factor
         self.direction = direction
         self.enable_reverse = enable_reverse
-    
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         result = {}
         for key, value in self.__dict__.items():
             if value is not None:
-                if hasattr(value, 'value'):
+                if hasattr(value, "value"):
                     result[key] = value.value
                 else:
                     result[key] = value
         return result
 
+
 class ShadowConfig:
     """
     Configuration class for shadow effects.
-    
+
     Controls the appearance and behavior of shadow effects during tilt.
     """
-    
+
     def __init__(
         self,
         disable: Optional[bool] = None,
@@ -225,7 +246,7 @@ class ShadowConfig:
     ):
         """
         Initialize ShadowConfig.
-        
+
         Args:
             disable: Disable shadow effect
             color: Shadow color (hex string)
@@ -252,25 +273,26 @@ class ShadowConfig:
         self.max_blur_radius = max_blur_radius
         self.direction = direction
         self.enable_reverse = enable_reverse
-    
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         result = {}
         for key, value in self.__dict__.items():
             if value is not None:
-                if hasattr(value, 'value'):
+                if hasattr(value, "value"):
                     result[key] = value.value
                 else:
                     result[key] = value
         return result
 
+
 class ParallaxConfig:
     """
     Configuration class for parallax effects.
-    
+
     Controls the parallax movement of child elements during tilt.
     """
-    
+
     def __init__(
         self,
         disable: Optional[bool] = None,
@@ -278,14 +300,14 @@ class ParallaxConfig:
     ):
         """
         Initialize ParallaxConfig.
-        
+
         Args:
             disable: Disable parallax effect
             factor: Parallax movement factor (0.0 to 1.0)
         """
         self.disable = disable
         self.factor = factor
-    
+
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
         result = {}
@@ -294,10 +316,11 @@ class ParallaxConfig:
                 result[key] = value
         return result
 
+
 class FletTilt(ConstrainedControl):
     """
     FletTilt Control - A Flutter Tilt widget wrapper for Flet.
-    
+
     Provides tilt effects with light, shadow, and parallax animations.
     Supports touch, hover, controller, and sensor gestures.
     """
@@ -393,11 +416,27 @@ class FletTilt(ConstrainedControl):
     def before_update(self):
         super().before_update()
         # Convert config objects to dictionaries if needed
-        tilt_dict = self.__tilt_config.to_dict() if isinstance(self.__tilt_config, TiltConfig) else self.__tilt_config
-        light_dict = self.__light_config.to_dict() if isinstance(self.__light_config, LightConfig) else self.__light_config
-        shadow_dict = self.__shadow_config.to_dict() if isinstance(self.__shadow_config, ShadowConfig) else self.__shadow_config
-        parallax_dict = self.__parallax_config.to_dict() if isinstance(self.__parallax_config, ParallaxConfig) else self.__parallax_config
-        
+        tilt_dict = (
+            self.__tilt_config.to_dict()
+            if isinstance(self.__tilt_config, TiltConfig)
+            else self.__tilt_config
+        )
+        light_dict = (
+            self.__light_config.to_dict()
+            if isinstance(self.__light_config, LightConfig)
+            else self.__light_config
+        )
+        shadow_dict = (
+            self.__shadow_config.to_dict()
+            if isinstance(self.__shadow_config, ShadowConfig)
+            else self.__shadow_config
+        )
+        parallax_dict = (
+            self.__parallax_config.to_dict()
+            if isinstance(self.__parallax_config, ParallaxConfig)
+            else self.__parallax_config
+        )
+
         self._set_attr_json("tilt_config", tilt_dict)
         self._set_attr_json("light_config", light_dict)
         self._set_attr_json("shadow_config", shadow_dict)
