@@ -1,0 +1,22 @@
+name: flet_tilt
+description: Flet FletTilt control
+repository: https://github.com/MyGithubAccount/flet-tilt/src/flutter/flet_tilt
+version: 0.1.0
+homepage: https://github.com/MyGithubAccount/flet-tilt
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flet: 0.28.3
+  flutter:
+    sdk: flutter
+  flutter_tilt: ^3.0.0
+  sensors_plus: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  

@@ -1,0 +1,7 @@
+site_name: FletTilt
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings
