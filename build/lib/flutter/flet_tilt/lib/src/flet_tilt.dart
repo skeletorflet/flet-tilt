@@ -110,6 +110,26 @@ class _FletTiltControlState extends State<FletTiltControl> {
         context, tiltWidget, widget.parent, widget.control);
   }
 
+  Offset? _parseInitialOffset(dynamic initial) {
+    if (initial == null) return null;
+    
+    if (initial is Map<String, dynamic>) {
+      final double? dx = initial['dx']?.toDouble();
+      final double? dy = initial['dy']?.toDouble();
+      if (dx != null && dy != null) {
+        return Offset(dx, dy);
+      }
+    } else if (initial is List && initial.length == 2) {
+      final double? dx = initial[0]?.toDouble();
+      final double? dy = initial[1]?.toDouble();
+      if (dx != null && dy != null) {
+        return Offset(dx, dy);
+      }
+    }
+    
+    return null;
+  }
+
   TiltConfig? _parseTiltConfig() {
     final String? configJson = widget.control.attrString("tilt_config");
     if (configJson == null) return null;
@@ -130,7 +150,7 @@ class _FletTiltControlState extends State<FletTiltControl> {
       }
       return TiltConfig(
         disable: config['disable'] ?? false,
-        initial: parseOffset(widget.control, 'initial'),
+        initial: _parseInitialOffset(config['initial']),
         angle: config['angle']?.toDouble() ?? 10.0,
         direction: _parseTiltDirectionList(config['direction']),
         enableReverse: config['enable_reverse'] ?? false,

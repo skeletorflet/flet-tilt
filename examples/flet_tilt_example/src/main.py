@@ -11,7 +11,7 @@ from flet_tilt import (
 
 
 def main(page: ft.Page):
-    page.title = "Flet Tilt - All Examples"
+    page.title = "Flet Tilt - Complete Examples"
     page.theme_mode = ft.ThemeMode.LIGHT
     page.padding = 20
     page.scroll = ft.ScrollMode.AUTO
@@ -41,7 +41,7 @@ def main(page: ft.Page):
             ),
         )
 
-    # Example 1: Default Tilt - Pikachu
+    # Example 1: Default Tilt
     default_tilt = FletTilt(
         border_radius=30,
         child=ft.Container(
@@ -51,20 +51,25 @@ def main(page: ft.Page):
             gradient=ft.LinearGradient(
                 begin=ft.alignment.bottom_left,
                 end=ft.alignment.top_right,
-                colors=["#ffeb3b", "#ff9800"],
+                colors=["#2196f3", "#1976d2"],
             ),
             content=ft.Column(
                 [
-                    ft.Image(
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg",
-                        width=120,
-                        height=120,
+                    ft.Icon(
+                        ft.Icons.TOUCH_APP,
+                        size=80,
+                        color=ft.Colors.WHITE,
                     ),
                     ft.Text(
-                        "Pikachu ⚡",
-                        size=20,
+                        "Default Tilt",
+                        size=24,
                         color=ft.Colors.WHITE,
                         weight=ft.FontWeight.BOLD,
+                    ),
+                    ft.Text(
+                        "Basic tilt functionality",
+                        size=14,
+                        color=ft.Colors.WHITE70,
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -72,7 +77,7 @@ def main(page: ft.Page):
         ),
     )
 
-    # Example 2: Tilt Direction - Mewtwo
+    # Example 2: Tilt Direction Control
     tilt_direction = FletTilt(
         border_radius=30,
         tilt_config=TiltConfig(
@@ -90,16 +95,21 @@ def main(page: ft.Page):
             ),
             content=ft.Column(
                 [
-                    ft.Image(
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg",
-                        width=120,
-                        height=120,
+                    ft.Icon(
+                        ft.Icons.CONTROL_CAMERA,
+                        size=80,
+                        color=ft.Colors.WHITE,
                     ),
                     ft.Text(
-                        "Mewtwo 🧠",
-                        size=20,
+                        "Direction Control",
+                        size=24,
                         color=ft.Colors.WHITE,
                         weight=ft.FontWeight.BOLD,
+                    ),
+                    ft.Text(
+                        "TOP & BOTTOM only",
+                        size=14,
+                        color=ft.Colors.WHITE70,
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -107,7 +117,7 @@ def main(page: ft.Page):
         ),
     )
 
-    # Example 3: Light Direction - Lugia
+    # Example 3: Light Configuration
     light_direction = FletTilt(
         border_radius=30,
         light_config=LightConfig(
@@ -121,20 +131,25 @@ def main(page: ft.Page):
             gradient=ft.LinearGradient(
                 begin=ft.alignment.top_center,
                 end=ft.alignment.bottom_center,
-                colors=["#2196f3", "#0d47a1"],
+                colors=["#ff9800", "#f57c00"],
             ),
             content=ft.Column(
                 [
-                    ft.Image(
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/249.svg",
-                        width=120,
-                        height=120,
+                    ft.Icon(
+                        ft.Icons.LIGHTBULB,
+                        size=80,
+                        color=ft.Colors.WHITE,
                     ),
                     ft.Text(
-                        "Lugia 🌊",
-                        size=20,
+                        "Light Effects",
+                        size=24,
                         color=ft.Colors.WHITE,
                         weight=ft.FontWeight.BOLD,
+                    ),
+                    ft.Text(
+                        "AROUND direction",
+                        size=14,
+                        color=ft.Colors.WHITE70,
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -142,7 +157,7 @@ def main(page: ft.Page):
         ),
     )
 
-    # Example 4: Disable Effects - Gyarados
+    # Example 4: Disable Effects
     disable_effects = FletTilt(
         border_radius=30,
         tilt_config=TiltConfig(disable=False),
@@ -155,32 +170,36 @@ def main(page: ft.Page):
             gradient=ft.LinearGradient(
                 begin=ft.alignment.top_left,
                 end=ft.alignment.bottom_right,
-                colors=["#2196f3", "#1565c0"],
+                colors=["#607d8b", "#37474f"],
             ),
             content=ft.Column(
                 [
-                    ft.Image(
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/130.svg",
-                        width=120,
-                        height=120,
+                    ft.Icon(
+                        ft.Icons.BLOCK,
+                        size=80,
+                        color=ft.Colors.WHITE,
                     ),
                     ft.Text(
-                        "Gyarados 🐉",
-                        size=20,
+                        "Disabled Effects",
+                        size=24,
                         color=ft.Colors.WHITE,
                         weight=ft.FontWeight.BOLD,
+                    ),
+                    ft.Text(
+                        "Light & Shadow OFF",
+                        size=14,
+                        color=ft.Colors.WHITE70,
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             ),
         ),
     )
-
-    # Example 5: Initial Tilt - Bulbasaur
+    # Example 5: Initial Tilt Position
     initial_tilt = FletTilt(
         border_radius=30,
         tilt_config=TiltConfig(
-            initial={"dx": -1.0, "dy": -1.0},
+            initial=ft.Offset(-1.6, -1.0),
         ),
         child_layout_outer=[
             ft.Container(
@@ -188,9 +207,9 @@ def main(page: ft.Page):
                 height=80,
                 alignment=ft.alignment.center,
                 border_radius=40,
-                bgcolor=ft.Colors.with_opacity(0.2, ft.Colors.GREEN),
+                bgcolor=ft.Colors.with_opacity(0.7, ft.Colors.GREEN),
                 content=ft.Text(
-                    "#001",
+                    "OUTER",
                     size=12,
                     color=ft.Colors.WHITE,
                     weight=ft.FontWeight.BOLD,
@@ -208,16 +227,21 @@ def main(page: ft.Page):
             ),
             content=ft.Column(
                 [
-                    ft.Image(
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
-                        width=120,
-                        height=120,
+                    ft.Icon(
+                        ft.Icons.SETTINGS_BACKUP_RESTORE,
+                        size=80,
+                        color=ft.Colors.WHITE,
                     ),
                     ft.Text(
-                        "Bulbasaur 🌱",
-                        size=20,
+                        "Initial Tilt",
+                        size=24,
                         color=ft.Colors.WHITE,
                         weight=ft.FontWeight.BOLD,
+                    ),
+                    ft.Text(
+                        ft.Offset(-1.6, -1.0),
+                        size=14,
+                        color=ft.Colors.WHITE70,
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -225,7 +249,7 @@ def main(page: ft.Page):
         ),
     )
 
-    # Example 6: Reverse Tilt - Rayquaza
+    # Example 6: Reverse Tilt
     reverse_tilt = FletTilt(
         border_radius=30,
         tilt_config=TiltConfig(enable_revert=True),
@@ -237,27 +261,33 @@ def main(page: ft.Page):
             gradient=ft.LinearGradient(
                 begin=ft.alignment.top_center,
                 end=ft.alignment.bottom_center,
-                colors=["#4caf50", "#1b5e20"],
+                colors=["#66bb6a", "#1b5e20"],
             ),
             content=ft.Column(
                 [
-                    ft.Image(
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/384.svg",
-                        width=120,
-                        height=120,
+                    ft.Icon(
+                        ft.Icons.REFRESH,
+                        size=80,
+                        color=ft.Colors.WHITE,
                     ),
                     ft.Text(
-                        "Rayquaza 🐲",
-                        size=20,
+                        "Reverse Tilt",
+                        size=24,
                         color=ft.Colors.WHITE,
                         weight=ft.FontWeight.BOLD,
+                    ),
+                    ft.Text(
+                        "Enable revert & reverse",
+                        size=14,
+                        color=ft.Colors.WHITE70,
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             ),
         ),
     )
-    # Example 7: Layout with Parallax - Charmander Evolution Line
+
+    # Example 7: Parallax Layers
     layout_parallax = FletTilt(
         border_radius=30,
         tilt_config=TiltConfig(
@@ -297,7 +327,7 @@ def main(page: ft.Page):
             ),
         ],
         child_layout_behind=[
-            # Charizard (behind - furthest)
+            # Layer 3 (behind - furthest)
             ft.Stack(
                 [
                     ft.Container(
@@ -319,17 +349,17 @@ def main(page: ft.Page):
                             [
                                 ft.Column(
                                     [
-                                        ft.Image(
-                                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg",
-                                            width=120,
-                                            height=120,
+                                        ft.Icon(
+                                            ft.Icons.HEXAGON,
+                                            size=80,
+                                            color=ft.Colors.WHITE,
                                         ),
                                         ft.Text(
-                                            "Charizard 🔥",
-                                            size=20,
-                                            color=ft.Colors.WHITE,
-                                            weight=ft.FontWeight.BOLD,
-                                        ),
+                                             "Behind 3",
+                                             size=20,
+                                             color=ft.Colors.WHITE,
+                                             weight=ft.FontWeight.BOLD,
+                                         ),
                                     ],
                                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                                 ),
@@ -339,7 +369,7 @@ def main(page: ft.Page):
                     ),
                 ]
             ),
-            # Charmeleon (behind - middle)
+            # Layer 2 (behind - middle)
             ft.Stack(
                 [
                     ft.Container(
@@ -361,17 +391,17 @@ def main(page: ft.Page):
                             [
                                 ft.Column(
                                     [
-                                        ft.Image(
-                                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/5.svg",
-                                            width=110,
-                                            height=110,
+                                        ft.Icon(
+                                            ft.Icons.PENTAGON,
+                                            size=70,
+                                            color=ft.Colors.WHITE,
                                         ),
                                         ft.Text(
-                                            "Charmeleon",
-                                            size=18,
-                                            color=ft.Colors.WHITE,
-                                            weight=ft.FontWeight.BOLD,
-                                        ),
+                                             "Behind 2",
+                                             size=18,
+                                             color=ft.Colors.WHITE,
+                                             weight=ft.FontWeight.BOLD,
+                                         ),
                                     ],
                                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                                 ),
@@ -403,17 +433,17 @@ def main(page: ft.Page):
                         [
                             ft.Column(
                                 [
-                                    ft.Image(
-                                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg",
-                                        width=100,
-                                        height=100,
+                                    ft.Icon(
+                                        ft.Icons.SQUARE,
+                                        size=60,
+                                        color=ft.Colors.WHITE,
                                     ),
                                     ft.Text(
-                                        "Charmander",
-                                        size=16,
-                                        color=ft.Colors.WHITE,
-                                        weight=ft.FontWeight.BOLD,
-                                    ),
+                                         "Main Child",
+                                         size=16,
+                                         color=ft.Colors.WHITE,
+                                         weight=ft.FontWeight.BOLD,
+                                     ),
                                 ],
                                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                             ),
@@ -425,7 +455,7 @@ def main(page: ft.Page):
         ),
     )
 
-    # Example 8: Light Shadow Mode - Arceus
+    # Example 8: Shadow Configuration
     light_shadow_mode = FletTilt(
         border_radius=30,
         tilt_config=TiltConfig(
@@ -447,16 +477,21 @@ def main(page: ft.Page):
             ),
             content=ft.Column(
                 [
-                    ft.Image(
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/493.svg",
-                        width=120,
-                        height=120,
+                    ft.Icon(
+                        ft.Icons.SQUARE,
+                        size=80,
+                        color=ft.Colors.WHITE,
                     ),
                     ft.Text(
-                        "Arceus ✨",
-                        size=20,
+                        "Shadow Effects",
+                        size=24,
                         color=ft.Colors.WHITE,
                         weight=ft.FontWeight.BOLD,
+                    ),
+                    ft.Text(
+                        "Max intensity: 0.6",
+                        size=14,
+                        color=ft.Colors.WHITE70,
                     ),
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -475,43 +510,43 @@ def main(page: ft.Page):
             ),
             ft.Container(height=20),
             create_example_card(
-                "1. Default Tilt - Pikachu ⚡",
-                "Basic tilt effect with the most iconic Pokémon",
+                "1. Default Tilt",
+                "Basic tilt functionality with default settings",
                 default_tilt,
             ),
             create_example_card(
-                "2. Tilt Direction - Mewtwo 🧠",
-                "Control tilt direction with the legendary psychic Pokémon",
+                "2. Tilt Direction Control",
+                "Control tilt direction (TOP & BOTTOM only)",
                 tilt_direction,
             ),
             create_example_card(
-                "3. Light Direction - Lugia 🌊",
-                "Configure light effects with the guardian of the seas",
+                "3. Light Configuration",
+                "Configure light effects with AROUND direction",
                 light_direction,
             ),
             create_example_card(
-                "4. Disable Effects - Gyarados 🐉",
-                "Selectively disable effects with the fierce water dragon",
+                "4. Disable Effects",
+                "Selectively disable light and shadow effects",
                 disable_effects,
             ),
             create_example_card(
-                "5. Initial Tilt - Bulbasaur 🌱",
-                "Set initial tilt position with the first Pokémon (#001)",
+                "5. Initial Tilt Position",
+                "Set initial tilt position with dx/dy values",
                 initial_tilt,
             ),
             create_example_card(
-                "6. Reverse Tilt - Rayquaza 🐲",
-                "Enable reverse effects with the sky high dragon",
+                "6. Reverse Tilt",
+                "Enable revert and reverse shadow effects",
                 reverse_tilt,
             ),
             create_example_card(
-                "7. Parallax Evolution - Charmander Line 🔥",
-                "Complete evolution line with parallax layers (Charmander → Charmeleon → Charizard)",
+                "7. Parallax Layers",
+                "Multiple layers with child_layout_behind configuration",
                 layout_parallax,
             ),
             create_example_card(
-                "8. Shadow Effects - Arceus ✨",
-                "Advanced shadow configuration with the Alpha Pokémon",
+                "8. Shadow Configuration",
+                "Advanced shadow settings with custom intensity",
                 light_shadow_mode,
             ),
         ],

@@ -6,6 +6,7 @@ from flet.core.control import OptionalNumber, Control
 from flet.core.ref import Ref
 from flet.core.types import OptionalControlEventCallable, Duration, DurationValue
 from flet.core.animation import AnimationCurve
+from flet.core.transform import Offset
 
 
 class TiltDirection(Enum):
@@ -56,7 +57,7 @@ class TiltConfig:
     def __init__(
         self,
         disable: Optional[bool] = None,
-        initial: Optional[Union[float, tuple]] = None,
+        initial: Optional[Offset] = None,
         angle: Optional[float] = None,
         direction: Optional[List[Union[TiltDirection, str]]] = None,
         enable_revert: Optional[bool] = None,
@@ -81,7 +82,7 @@ class TiltConfig:
 
         Args:
             disable: Disable tilt effect
-            initial: Initial tilt value (float or tuple)
+            initial: Initial tilt value (Offset object)
             angle: Tilt angle in degrees (0.0 to 1.0)
             direction: Allowed tilt directions
             enable_revert: Enable revert direction
@@ -137,9 +138,17 @@ class TiltConfig:
                 }
             return duration
 
+        # Convert Offset to dx/dy format for Dart
+        initial_dict = None
+        if self.initial is not None:
+            if isinstance(self.initial, Offset):
+                initial_dict = {"dx": self.initial.x, "dy": self.initial.y}
+            else:
+                initial_dict = self.initial
+
         return {
             "disable": self.disable,
-            "initial": self.initial,
+            "initial": initial_dict,
             "angle": self.angle,
             "direction": [d.value if hasattr(d, "value") else d for d in self.direction]
             if isinstance(self.direction, list)
