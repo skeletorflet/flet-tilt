@@ -13,9 +13,9 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://mydomain.dev"
-Documentation = "https://github.com/MyGithubAccount/flet-tilt"
-Repository = "https://github.com/MyGithubAccount/flet-tilt"
-Issues = "https://github.com/MyGithubAccount/flet-tilt/issues"
+Documentation = "https://github.com/skeletorflet/flet-tilt"
+Repository = "https://github.com/skeletorflet/flet-tilt"
+Issues = "https://github.com/skeletorflet/flet-tilt/issues"
 
 [tool.setuptools.package-data]
 "flutter.flet_tilt" = ["**/*"]

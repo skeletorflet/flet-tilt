@@ -1,8 +1,8 @@
 name: flet_tilt
 description: Flet FletTilt control
-repository: https://github.com/MyGithubAccount/flet-tilt/src/flutter/flet_tilt
+repository: https://github.com/skeletorflet/flet-tilt/src/flutter/flet_tilt
 version: 0.1.0
-homepage: https://github.com/MyGithubAccount/flet-tilt
+homepage: https://github.com/skeletorflet/flet-tilt
 
 environment:
   sdk: '>=3.3.0 <4.0.0'

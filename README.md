@@ -11,7 +11,7 @@ Link to git repository:
 
 ```
 dependencies = [
-  "flet-tilt @ git+https://github.com/MyGithubAccount/flet-tilt",
+  "flet-tilt @ git+https://github.com/skeletorflet/flet-tilt",
   "flet>=0.28.3",
 ]
 ```
